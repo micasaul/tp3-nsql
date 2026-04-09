@@ -10,6 +10,24 @@ def get_lat_lon():
         return None, None
     return data["lat"], data["lon"]
 
+def cargar_datos():
+    if r.exists("cervecerias"):
+        return
+
+    agregar_lugar("cervecerias", "Tractor", -32.480, -58.238)
+    agregar_lugar("cervecerias", "Ambar", -32.482, -58.232)
+
+    agregar_lugar("universidades", "UNER", -32.47, -58.26)
+    agregar_lugar("universidades", "FCYT-UADER", -32.47, -58.23)
+
+    agregar_lugar("farmacias", "Farmacia Yrigoyen", -32.48, -58.24)
+    agregar_lugar("farmacias", "Farmacia Alberdi", -32.48, -58.23)
+
+    agregar_lugar("emergencias", "Hospital", -32.48, -58.26)
+
+    agregar_lugar("supermercados", "Supermercado Dar", -32.48, -58.23)
+    agregar_lugar("supermercados", "Supermercado Dia", -32.49, -58.24)
+
 @app.route('/agregar/<string:grupo>/<string:nombre>', methods=['POST'])
 def agregar_lugar(grupo, nombre, lat, lon):
     lat, lon = get_lat_lon()
@@ -34,4 +52,5 @@ def distancia(grupo, lugar1, lugar2):
     return jsonify({"distancia_km": dist})
 
 if __name__ == '__main__':
+    cargar_datos()
     app.run(debug=True)
