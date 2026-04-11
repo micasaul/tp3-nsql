@@ -11,6 +11,31 @@
       <img src="img/logo-header.png"/>
     </header>
     <main>
+      <div class="container">
+        <div class="card izquierda">
+          <div class="tabs">
+            <button class="tab active" data-tab="agregar">Agregar</button>
+            <button class="tab" data-tab="buscar">Buscar</button>
+            <button class="tab" data-tab="distancia">Distancia</button>
+          </div>
+
+          <div id="form-container"></div>
+          <div id="resultado"></div>
+        </div>
+
+        <div class="card derecha">
+          <select id="filtro">
+            <option value="todos">Todos</option>
+            <option value="cervecerias">Cervecerías</option>
+            <option value="universidades">Universidades</option>
+            <option value="farmacias">Farmacias</option>
+            <option value="emergencias">Emergencias</option>
+            <option value="supermercados">Supermercados</option>
+          </select>
+
+          <ul id="lista"></ul>
+        </div>
+      </div>
     </main>
     <script src="/js/main.js"></script>
   </body>
