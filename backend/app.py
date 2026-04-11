@@ -1,7 +1,12 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, send_from_directory
 from redis import Redis
 
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="../frontend",
+    static_folder="../frontend",
+    static_url_path=""
+)
 r = Redis(host='localhost', port=6379, decode_responses=True)
 
 def get_data(requeridos):
@@ -35,6 +40,10 @@ def cargar_datos():
 
     agregar_lugar("supermercados", "Supermercado Dar", -32.48, -58.23)
     agregar_lugar("supermercados", "Supermercado Dia", -32.49, -58.24)
+
+@app.route('/')
+def home():
+    return send_from_directory("../frontend",'index.html')
 
 @app.route('/agregar', methods=['POST'])
 def agregar():
